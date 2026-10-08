@@ -5,806 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Fashion Store</title>
-
-  <style>
-    /* =========================================================
-       RESET
-    ========================================================= */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #111111;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    /* =========================================================
-       PAGE BACKGROUND
-    ========================================================= */
-
-    .page {
-      min-height: 100vh;
-      padding: 12px 7px;
-      background:
-        repeating-linear-gradient(
-          175deg,
-          transparent 0,
-          transparent 28px,
-          rgba(0, 0, 0, 0.08) 29px,
-          transparent 31px
-        ),
-        #f7df38;
-    }
-
-    .site-container {
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      background: #ffffff;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    /* =========================================================
-       MAIN LAYOUT
-    ========================================================= */
-
-    .main-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(300px, 1fr);
-      min-height: 100vh;
-    }
-
-    .main-content {
-      min-width: 0;
-      background: #ffffff;
-    }
-
-    .side-content {
-      min-width: 0;
-      background: #ffffff;
-    }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .hero {
-      padding: 18px 30px 20px;
-    }
-
-    .hero-card {
-      position: relative;
-      min-height: 275px;
-      border-radius: 16px;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(247, 248, 244, 0.98) 0%,
-          rgba(247, 248, 244, 0.95) 38%,
-          rgba(247, 248, 244, 0.15) 100%
-        ),
-        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85")
-        center / cover no-repeat;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 52%;
-      padding: 28px 0 25px 34px;
-    }
-
-    .hero-title {
-      font-size: clamp(32px, 4vw, 58px);
-      line-height: 0.98;
-      font-weight: 900;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-    }
-
-    .hero-title span {
-      display: inline-block;
-      padding: 2px 8px;
-      margin: 3px 0;
-      background: #f7df38;
-    }
-
-    .hero-description {
-      margin-top: 18px;
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 300px;
-    }
-
-    .shop-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 18px;
-      padding: 11px 17px;
-      border: 0;
-      background: #111111;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      transition: 0.25s ease;
-    }
-
-    .shop-button:hover {
-      background: #f7df38;
-      color: #111111;
-    }
-
-    /* =========================================================
-       BRAND BAR
-    ========================================================= */
-
-    .brand-bar {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      align-items: center;
-      gap: 20px;
-      padding: 17px 30px;
-      background: #f7df38;
-    }
-
-    .brand {
-      text-align: center;
-      font-size: 14px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .brand.hm {
-      color: #e00000;
-      font-size: 22px;
-      font-family: Georgia, serif;
-    }
-
-    .brand.obey {
-      font-size: 18px;
-    }
-
-    .brand.shopify {
-      color: #5c9235;
-    }
-
-    .brand.lacoste {
-      font-size: 12px;
-    }
-
-    .brand.levis {
-      color: #c41e1e;
-      font-family: Georgia, serif;
-    }
-
-    .brand.amazon {
-      font-size: 18px;
-      font-family: Georgia, serif;
-    }
-
-    /* =========================================================
-       SECTION
-    ========================================================= */
-
-    .section {
-      padding: 22px 30px 30px;
-    }
-
-    .section-title {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .section-title::after {
-      content: "";
-      position: absolute;
-      width: 48px;
-      height: 6px;
-      left: 50%;
-      bottom: -2px;
-      transform: translateX(-50%) rotate(-2deg);
-      background: #f7df38;
-      z-index: 0;
-    }
-
-    .section-title span {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* =========================================================
-       PRODUCT GRID
-    ========================================================= */
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-    }
-
-    .product-card {
-      min-width: 0;
-    }
-
-    .product-image {
-      position: relative;
-      aspect-ratio: 0.82;
-      overflow: hidden;
-      border-radius: 7px;
-      background: #eeeeee;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .product-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .product-info {
-      padding-top: 10px;
-    }
-
-    .product-name {
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .product-price {
-      margin-top: 4px;
-      font-size: 13px;
-      color: #555555;
-    }
-
-    /* =========================================================
-       SIDE - TOP PROMO
-    ========================================================= */
-
-    .side-promo {
-      min-height: 290px;
-      padding: 35px 30px;
-
-      display: flex;
-      align-items: center;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(247, 223, 56, 0.95),
-          rgba(247, 223, 56, 0.65)
-        ),
-        url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85")
-        center / cover no-repeat;
-    }
-
-    .promo-content {
-      max-width: 280px;
-    }
-
-    .promo-small {
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1.5;
-    }
-
-    .promo-title {
-      margin-top: 8px;
-      font-size: 28px;
-      font-weight: 900;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .promo-button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 9px 14px;
-      background: #111111;
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    /* =========================================================
-       FAVORITES
-    ========================================================= */
-
-    .favorites {
-      padding: 28px 30px;
-      background: #ffffff;
-    }
-
-    .favorite-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .favorite-card {
-      overflow: hidden;
-      border-radius: 7px;
-    }
-
-    .favorite-card img {
-      aspect-ratio: 1.15;
-      object-fit: cover;
-      transition: 0.3s ease;
-    }
-
-    .favorite-card:hover img {
-      transform: scale(1.04);
-    }
-
-    .favorite-info {
-      padding-top: 8px;
-    }
-
-    .favorite-name {
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .favorite-price {
-      margin-top: 3px;
-      font-size: 11px;
-      color: #666666;
-    }
-
-    /* =========================================================
-       MOBILE APP
-    ========================================================= */
-
-    .mobile-app {
-      position: relative;
-      min-height: 330px;
-      padding: 35px 30px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    .mobile-app::before,
-    .mobile-app::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid #eeeeee;
-    }
-
-    .mobile-app::before {
-      width: 300px;
-      height: 300px;
-      right: -90px;
-      top: 20px;
-    }
-
-    .mobile-app::after {
-      width: 210px;
-      height: 210px;
-      right: -45px;
-      top: 65px;
-    }
-
-    .app-content {
-      position: relative;
-      z-index: 2;
-      width: 55%;
-    }
-
-    .app-title {
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.05;
-      text-transform: uppercase;
-    }
-
-    .app-text {
-      margin-top: 12px;
-      font-size: 11px;
-      line-height: 1.5;
-      color: #555555;
-    }
-
-    .app-buttons {
-      display: flex;
-      gap: 7px;
-      margin-top: 15px;
-    }
-
-    .store-button {
-      padding: 7px 10px;
-      border-radius: 5px;
-      background: #111111;
-      color: #ffffff;
-      font-size: 9px;
-      font-weight: 700;
-    }
-
-    .phone {
-      position: absolute;
-      z-index: 3;
-      width: 105px;
-      height: 205px;
-      right: 65px;
-      top: 62px;
-      border: 5px solid #222222;
-      border-radius: 17px;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      transform: rotate(4deg);
-    }
-
-    .phone-screen {
-      height: 100%;
-      padding: 10px 6px;
-      background: #f7df38;
-    }
-
-    .phone-header {
-      height: 10px;
-      margin-bottom: 7px;
-      border-radius: 5px;
-      background: #ffffff;
-    }
-
-    .phone-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4px;
-    }
-
-    .phone-grid div {
-      height: 55px;
-      border-radius: 4px;
-      background: #ffffff;
-    }
-
-    /* =========================================================
-       NEWSLETTER
-    ========================================================= */
-
-    .newsletter {
-      padding: 32px 30px 38px;
-      text-align: center;
-      background: #f7df38;
-    }
-
-    .newsletter-title {
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-
-    .newsletter-text {
-      margin-top: 8px;
-      font-size: 10px;
-    }
-
-    .newsletter-form {
-      display: flex;
-      max-width: 270px;
-      margin: 15px auto 0;
-      background: #ffffff;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      min-width: 0;
-      border: 0;
-      outline: none;
-      padding: 9px;
-      font-size: 10px;
-    }
-
-    .newsletter-form button {
-      padding: 0 13px;
-      border: 0;
-      background: #111111;
-      color: #ffffff;
-      font-size: 9px;
-      font-weight: 700;
-    }
-
-    /* =========================================================
-       TABLET
-       768px - 1100px
-    ========================================================= */
-
-    @media (max-width: 1100px) {
-
-      .page {
-        padding: 8px;
-      }
-
-      .main-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .side-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .side-promo {
-        min-height: 300px;
-      }
-
-      .favorites {
-        min-height: 300px;
-      }
-
-      .mobile-app {
-        min-height: 300px;
-      }
-
-      .newsletter {
-        grid-column: 1 / -1;
-      }
-    }
-
-    /* =========================================================
-       TABLET / SMALL LAPTOP
-       600px - 767px
-    ========================================================= */
-
-    @media (max-width: 767px) {
-
-      .page {
-        padding: 0;
-        background: #ffffff;
-      }
-
-      .site-container {
-        border-radius: 0;
-      }
-
-      .hero {
-        padding: 12px;
-      }
-
-      .hero-card {
-        min-height: 390px;
-        background:
-          linear-gradient(
-            180deg,
-            rgba(247, 248, 244, 0.98) 0%,
-            rgba(247, 248, 244, 0.82) 48%,
-            rgba(247, 248, 244, 0.15) 100%
-          ),
-          url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85")
-          center / cover no-repeat;
-      }
-
-      .hero-content {
-        width: 70%;
-        padding: 28px 20px;
-      }
-
-      .hero-title {
-        font-size: clamp(30px, 8vw, 46px);
-      }
-
-      .brand-bar {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        padding: 15px 12px;
-      }
-
-      .section {
-        padding: 22px 15px 28px;
-      }
-
-      .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 15px;
-      }
-
-      .side-content {
-        display: block;
-      }
-
-      .side-promo {
-        min-height: 260px;
-      }
-
-      .favorites {
-        padding: 25px 15px;
-      }
-
-      .mobile-app {
-        min-height: 280px;
-        padding: 30px 20px;
-      }
-
-      .app-content {
-        width: 60%;
-      }
-
-      .phone {
-        right: 25px;
-        width: 90px;
-        height: 175px;
-        top: 55px;
-      }
-
-      .newsletter {
-        padding: 30px 15px 35px;
-      }
-    }
-
-    /* =========================================================
-       MOBILE
-       <= 480px
-    ========================================================= */
-
-    @media (max-width: 480px) {
-
-      .hero-card {
-        min-height: 470px;
-        background:
-          linear-gradient(
-            180deg,
-            rgba(247, 248, 244, 0.98) 0%,
-            rgba(247, 248, 244, 0.88) 42%,
-            rgba(247, 248, 244, 0.05) 100%
-          ),
-          url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=85")
-          center / cover no-repeat;
-      }
-
-      .hero-content {
-        width: 100%;
-        padding: 28px 20px;
-      }
-
-      .hero-title {
-        font-size: 37px;
-      }
-
-      .hero-description {
-        max-width: 220px;
-      }
-
-      .brand-bar {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px 10px;
-      }
-
-      .brand {
-        font-size: 12px;
-      }
-
-      .brand.hm {
-        font-size: 19px;
-      }
-
-      .brand.amazon {
-        font-size: 16px;
-      }
-
-      .section-title {
-        font-size: 18px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .product-image {
-        aspect-ratio: 1 / 1.05;
-      }
-
-      .favorite-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .side-promo {
-        min-height: 300px;
-        padding: 30px 20px;
-      }
-
-      .promo-title {
-        font-size: 25px;
-      }
-
-      .mobile-app {
-        min-height: 350px;
-      }
-
-      .app-content {
-        width: 55%;
-      }
-
-      .app-title {
-        font-size: 18px;
-      }
-
-      .phone {
-        right: 20px;
-        top: 82px;
-        width: 82px;
-        height: 165px;
-      }
-
-      .newsletter-title {
-        font-size: 17px;
-      }
-    }
-
-    /* =========================================================
-       VERY SMALL MOBILE
-       <= 360px
-    ========================================================= */
-
-    @media (max-width: 360px) {
-
-      .hero-title {
-        font-size: 32px;
-      }
-
-      .brand-bar {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .favorite-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .mobile-app {
-        min-height: 380px;
-      }
-
-      .app-content {
-        width: 58%;
-      }
-
-      .phone {
-        right: 12px;
-        width: 75px;
-        height: 150px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/style.css" />
+  <script src="scripts/cart.js" defer></script>
 </head>
 
 <body>
@@ -813,143 +15,158 @@
 
     <div class="site-container">
 
+        <header class="store-header">
+            <a class="store-logo" href="index.html">
+                <img src="images/logo.jpg" alt="ID Fashions">
+                <span>ID Fashions</span>
+            </a>
+
+            <a class="cart-link" href="cart.html">
+                🛒 Cart
+                <span id="cart-count">0</span>
+            </a>
+        </header>
+
       <div class="main-layout">
 
         <!-- ===================================================
              LEFT / MAIN CONTENT
         ==================================================== -->
 
-        <main class="main-content">
+          <main class="main-content">
 
-          <!-- HERO -->
-          <section class="hero">
+              <!-- HERO -->
+              <section class="hero">
 
-            <div class="hero-card">
+                  <div class="hero-card">
 
-              <div class="hero-content">
+                      <div class="hero-content">
 
-                <h1 class="hero-title">
-                  Let's<br>
-                  Explore<br>
-                  <span>Unique</span><br>
-                  Clothes.
-                </h1>
+                          <h1 class="hero-title">
+                              Let's<br>
+                              Explore<br>
+                              <span>Unique</span><br>
+                              Clothes.
+                          </h1>
 
-                <p class="hero-description">
-                  Live for influential and innovative fashion!
-                </p>
+                          <p class="hero-description">
+                              Live for influential and innovative fashion!
+                          </p>
 
-                <a href="#" class="shop-button">
-                  Shop Now
-                </a>
+                          <a href="#new-arrivals" class="shop-button">
+                              Shop Now
+                          </a>
 
-              </div>
+                      </div>
 
-            </div>
-
-          </section>
-
-
-          <!-- BRANDS -->
-          <section class="brand-bar">
-
-            <div class="brand hm">H&M</div>
-
-            <div class="brand obey">OBEY</div>
-
-            <div class="brand shopify">♟ shopify</div>
-
-            <div class="brand lacoste">LACOSTE 🐊</div>
-
-            <div class="brand levis">LEVI'S</div>
-
-            <div class="brand amazon">amazon</div>
-
-          </section>
-
-
-          <!-- NEW ARRIVALS -->
-          <section class="section">
-
-            <h2 class="section-title">
-              <span>New Arrivals</span>
-            </h2>
-
-            <div class="product-grid">
-
-              <article class="product-card">
-
-                <div class="product-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85"
-                    alt="Orange fashion"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="product-info">
-                  <div class="product-name">
-                    Casual Collection
                   </div>
 
-                  <div class="product-price">
-                    From $29
+              </section>
+
+
+              <!-- BRANDS -->
+             
+              
+             
+             
+             
+
+              <section class="brand-bar">
+
+                  <div class="brand hm">Kurti, Saree & Lehenga</div>
+
+                  <div class="brand obey">Women Western</div>
+
+                  <div class="brand shopify"> Lingeriey</div>
+
+                  <div class="brand lacoste"> Men</div>
+
+                  <div class="brand levis"> Kids & ToysS</div>
+
+                  <div class="brand amazon">Popular</div>
+
+              </section>
+
+
+              <!-- NEW ARRIVALS -->
+              <section class="section" id="new-arrivals">
+
+                  <h2 class="section-title">
+                      <span>New Arrivals</span>
+                  </h2>
+
+                  <div class="product-grid">
+
+                      <article class="product-card">
+
+                          <div class="product-image">
+                              <img src="images/img1.jpg"
+                                   alt="Orange fashion"
+                                   loading="lazy" />
+                          </div>
+
+                          <div class="product-info">
+                              <div class="product-name">
+                                  Casual Collection
+                              </div>
+
+                              <div class="product-price">
+                                  $29
+                              </div>
+                              <button class="add-cart" data-name="Casual Collection" data-price="29">Add to Cart</button>
+                          </div>
+
+                      </article>
+
+
+                      <article class="product-card">
+
+                          <div class="product-image">
+                              <img src="images/img2.jpg"
+                                   alt="Winter fashion"
+                                   loading="lazy" />
+                          </div>
+
+                          <div class="product-info">
+                              <div class="product-name">
+                                  Winter Collection
+                              </div>
+
+                              <div class="product-price">
+                                  $39
+                              </div>
+                              <button class="add-cart" data-name="Winter Collection" data-price="39">Add to Cart</button>
+                          </div>
+
+                      </article>
+
+
+                      <article class="product-card">
+
+                          <div class="product-image">
+                              <img src="images/img3.jpg"
+                                   alt="Women's fashion"
+                                   loading="lazy" />
+                          </div>
+
+                          <div class="product-info">
+                              <div class="product-name">
+                                  Summer Collection
+                              </div>
+
+                              <div class="product-price">
+                                  $35
+                              </div>
+                              <button class="add-cart" data-name="Summer Collection" data-price="35">Add to Cart</button>
+                          </div>
+
+                      </article>
+
                   </div>
-                </div>
 
-              </article>
+              </section>
 
-
-              <article class="product-card">
-
-                <div class="product-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85"
-                    alt="Winter fashion"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="product-info">
-                  <div class="product-name">
-                    Winter Collection
-                  </div>
-
-                  <div class="product-price">
-                    From $39
-                  </div>
-                </div>
-
-              </article>
-
-
-              <article class="product-card">
-
-                <div class="product-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
-                    alt="Women's fashion"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div class="product-info">
-                  <div class="product-name">
-                    Summer Collection
-                  </div>
-
-                  <div class="product-price">
-                    From $35
-                  </div>
-                </div>
-
-              </article>
-
-            </div>
-
-          </section>
-
-        </main>
+          </main>
 
 
         <!-- ===================================================
@@ -998,7 +215,7 @@
               <article class="favorite-card">
 
                 <img
-                  src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=600&q=85"
+                  src="images/img11.jpeg"
                   alt="Instagram fashion"
                   loading="lazy"
                 />
@@ -1021,7 +238,7 @@
               <article class="favorite-card">
 
                 <img
-                  src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=600&q=85"
+                  src="images/img5.jpg"
                   alt="Women's fashion"
                   loading="lazy"
                 />
